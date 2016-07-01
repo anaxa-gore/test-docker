@@ -1,0 +1,19 @@
+version: '2'
+services:
+  servertba:
+    build:
+      context: ./server
+    ports:
+      - "8080:8080"
+  web:
+    build:
+      context: ./web
+    ports:
+      - "80:80"
+    links:
+      - servertba
+    # Pour ne pas avoir à rebuilder l'image à chaque fois, on peut monter le répertoire courant à l'emplacement qui convient
+    #volumes:
+    #  - ./web/src/main/webapp/:/usr/local/apache2/htdocs/
+
+
